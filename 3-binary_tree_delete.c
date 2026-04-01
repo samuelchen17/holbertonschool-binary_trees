@@ -14,6 +14,4 @@ return;
 binary_tree_delete(tree->left);
 binary_tree_delete(tree->right);
 free(tree);
-
-return (new_node);
 }
