@@ -2,28 +2,23 @@
 #include <stddef.h>
 
 /**
- * binary_tree_height - find height of binary tree
- * @tree: pointer to the root node
+ * binary_tree_depth - find depth of binary tree
+ * @tree: pointer to the node to measure depth
  * Return: height of a binary tree
  */
 
 size_t binary_tree_depth(const binary_tree_t *tree)
 {
-size_t left, right, height;
+size_t depth = 0;
 
 if (!tree)
 return (0);
 
-if (!tree->left && !tree->right)
-return (0);
+while (tree->parent)
+{
+tree = tree->parent;
+depth++;
+}
 
-left = binary_tree_height(tree->left);
-right = binary_tree_height(tree->right);
-
-if (left > right)
-height = left;
-else
-height = right;
-
-return (height + 1);
+return (depth);
 }
