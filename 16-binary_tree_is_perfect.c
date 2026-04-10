@@ -26,6 +26,24 @@ return (height + 1);
 }
 
 /**
+ * nodes_count - count number of nodes in binary tree
+ * @tree: pointer to root node
+ * Return: number of nodes
+ */
+
+int nodes_count(const binary_tree_t *tree)
+{
+int nodes = 0;
+
+if (!tree)
+return (0);
+
+nodes = 1 + nodes_count(tree->left) + nodes_count(tree->right);
+
+return (nodes);
+}
+
+/**
  * binary_tree_is_perfect - checks if a binary tree is perfect
  * @tree: pointer to root node
  * Return: 1 if perfect, else 0
@@ -33,14 +51,13 @@ return (height + 1);
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-int height;
+int height = 0, nodes = 0;
 
 if (!tree)
 return (0);
 
-height = (int)binary_tree_height(tree);
+height = binary_tree_height(tree);
+nodes = nodes_count(tree);
 
-/* recursive helper */
-
-return ();
+return (nodes == ((1 << height) -1));
 }
